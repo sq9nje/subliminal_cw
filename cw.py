@@ -5,19 +5,24 @@ from morsecodelib.config import config as morseConfig
 import tkinter as tk
 import random
 import argparse
+import time
 
 def play_character():
     c = random.choice(characters)
     lbl.configure(text=c)
     app.update()
     player.text_to_sound(c)
+    for r in range(conf.repeat-1):
+        time.sleep(morseConfig.DAH_DURATION)
+        player.text_to_sound(c)
     app.after(conf.delay, play_character) 
 
 def parse_config():
     parser = argparse.ArgumentParser(description='Learn CW while you work!')
-    parser.add_argument('-s', '--wpm', action='store', dest='wpm', default=20, help='Speed in WPM. Default 20')
-    parser.add_argument('-t', '--tone', action='store', dest='tone', default=600, help='Tone frequency in Hz. Default 600')
-    parser.add_argument('-d', '--delay', action='store', dest='delay', default=1000, help='Delay between characters in ms. Default 1000')
+    parser.add_argument('-s', '--wpm', action='store', dest='wpm', type=int, default=20, help='Speed in WPM. Default 20')
+    parser.add_argument('-t', '--tone', action='store', dest='tone', type=int, default=600, help='Tone frequency in Hz. Default 600')
+    parser.add_argument('-d', '--delay', action='store', dest='delay', type=int, default=1000, help='Delay between characters in ms. Default 1000')
+    parser.add_argument('-r', '--repeat', action='store', dest='repeat', type=int, default=1, help='Number of repetitions of each character.')
     parser.add_argument('--debug', action='store_true', dest='debug', default=False, help='Dispaly debug information.')
     return parser.parse_args()
 
@@ -29,6 +34,7 @@ if __name__ == '__main__':
         print('Speed     = {!r}'.format(conf.wpm))
         print('Tone      = {!r}'.format(conf.tone))
         print('Delay     = {!r}'.format(conf.delay))
+        print('Repeat    = {!r}'.format(conf.repeat))
 
     morseConfig.WORDS_PER_MINUTE = conf.wpm
     morseConfig.FREQUENCY = conf.tone
