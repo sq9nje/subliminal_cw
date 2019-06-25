@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 from morsecodelib import sound as morseSound
 from morsecodelib.config import config as morseConfig
