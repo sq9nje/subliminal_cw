@@ -9,9 +9,9 @@ The application has just a few dependencies, namely it requires the following mo
 * six
 * pygame
 
-You can install these simply by issueing 
+You can install these simply by typing
 ```
-pip3 iinstall -r requirements.txt
+pip3 install -r requirements.txt
 ```
 in the directory you saved this project to.
 
