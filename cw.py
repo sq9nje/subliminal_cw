@@ -25,7 +25,7 @@ def parse_config():
     parser.add_argument('-t', '--tone', action='store', dest='tone', type=int, default=600, help='Tone frequency in Hz. Default 600')
     parser.add_argument('-d', '--delay', action='store', dest='delay', type=int, default=1000, help='Delay between characters in ms. Default 1000')
     parser.add_argument('-r', '--repeat', action='store', dest='repeat', type=int, default=1, help='Number of repetitions of each character.')
-    parser.add_argument('-s', '--size', action='store', dest='size', type=str, default='normal', help='Windows size in small, normal or big. Default is normal')
+    parser.add_argument('-s', '--size', action='store', dest='size', type=str, choices={'small', 'normal', 'big'}, default='normal', help='Window size. Default is normal')
     parser.add_argument('--debug', action='store_true', dest='debug', default=False, help='Dispaly debug information.')
     return parser.parse_args()
 
@@ -46,7 +46,7 @@ def f_size(size):
                 return 140
 
 
-characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "O", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
 if __name__ == '__main__':
     conf = parse_config()
